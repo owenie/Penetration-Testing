@@ -16,7 +16,6 @@ upload_destination      =     ""
 port                    =     0
 
 def usage():
-    print("QYTANG Net Tool")
     print()
     print("Usage: NetCat.py -t target_host -p port")
     print("-l --listen                    - listen on [host]:[port] for incoming connections")
