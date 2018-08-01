@@ -191,7 +191,7 @@ def client_handler(client_socket):
 
     if command:#如果要shell交互
         while True:
-            client_socket.send("<QYTANG:#> ".encode())
+            client_socket.send("<360:#> ".encode())
             cmd_buffer = ""
             while "\n" not in cmd_buffer:
                 cmd_buffer += client_socket.recv(1024).decode()
