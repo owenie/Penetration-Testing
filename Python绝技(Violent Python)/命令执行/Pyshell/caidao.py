@@ -10,6 +10,7 @@ from cmd import Cmd
 import os
 import sys
 import urllib3
+import urllib2
 import urllib
 import requests
 import base64
@@ -27,14 +28,15 @@ def post(url, data):
     return req.content
 
 def oldpost(url, data):
-	# http = urllib3.PoolManager(timeout = 3)
+	http = urllib3.PoolManager(timeout = 3)
 	userAgent = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
-	response = urllib.Request(url, data=data, headers={'User_Agent':userAgent})
-	html = response.data
-	return html
+	response = http.request('POST', url, fields=data,headers={'User_Agent':userAgent})
+
+	# response = urllib.Request(url, fields=data, headers={'User_Agent':userAgent})
     # req.add_header('User-Agent', header)
-    html = urllib3.urlopen(req)
-    
+    # html = urllib3.urlopen(r)
+	html = json.loads(response.data.decode('utf-8'))['headers']
+	return html
     # html.close()
 
     

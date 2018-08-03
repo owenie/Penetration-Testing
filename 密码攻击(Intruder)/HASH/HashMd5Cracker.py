@@ -24,7 +24,7 @@ def gethash(dict_file,md5_txt,md5_file='dictmd5.txt'):
 		else:
 			pass
 		#将转换后的md5密文写到文件里
-		md5file.write(hash.hexdigest()+'\n')
+		# md5file.write(hash.hexdigest()+'\n')
 	md5file.close
 if __name__ == '__main__':
 	import sys
