@@ -33,3 +33,4 @@ def usage():
     print("./nc.py -l -p 5555 -c")
     print("./nc.py -l -p 5555 -u \'upload_dst.txt\'")
     print("./nc.py -l -p 5555 -e \'cat /etc/passwd\'")
+    
