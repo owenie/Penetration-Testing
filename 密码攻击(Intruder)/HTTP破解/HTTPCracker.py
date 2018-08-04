@@ -59,9 +59,6 @@ except Exception as e:
 
 print ('登录成功，开始破解!')
 
-
-
-
 url = 'http://101.198.180.117/bWAPP/ba_pwd_attacks_2.php'
 
 

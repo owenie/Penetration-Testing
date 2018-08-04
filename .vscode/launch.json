@@ -10,10 +10,10 @@
             "type": "python",
             "request": "launch",
             "program": "${file}"
-            "args": [
-                "TOP1000.txt",
-                "248698d0841cf61fad3d0e4e6d538fda"
-            ],
+            // "args": [
+            //     "TOP1000.txt",
+            //     "248698d0841cf61fad3d0e4e6d538fda"
+            // ],
         },
         {
             "name": "Python: Attach",

