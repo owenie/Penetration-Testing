@@ -18,7 +18,7 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 prompt = "root@python># "
 lujing=[]
-url = 'http://172.28.100.76/1.php'
+url = 'http://172.28.100.76/3.php'
 
 
 # requests方法
