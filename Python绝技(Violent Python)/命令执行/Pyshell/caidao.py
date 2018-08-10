@@ -18,7 +18,8 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 prompt = "root@python># "
 lujing=[]
-url = 'http://172.28.100.76/3.php'
+# url = 'http://172.28.100.76/3.php'
+url = 'http://10.1.1.100/1.php'
 
 
 # requests方法
@@ -33,7 +34,7 @@ def oldpost(url, data):
 	response = request.Request(url, data, headers=headers)
 	html = request.urlopen(response).read()
 	try:
-		data = html.decode(encoding='utf-8')
+		data = html.decode(encoding='gbk')
 	except Exception as e:
 		data = html.decode()
 	return data
